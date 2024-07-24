@@ -1,8 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/hello-fresh-api/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/hello-fresh-api/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/hello-fresh-api",
+  "projects": {
+    "hello-fresh-api": {
+      "type": "application",
+      "root": "apps/hello-fresh-api",
+      "entryFile": "main",
+      "sourceRoot": "apps/hello-fresh-api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/hello-fresh-api/tsconfig.app.json"
+      }
+    },
+    "core-lib": {
+      "type": "library",
+      "root": "libs/core-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/core-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/core-lib/tsconfig.lib.json"
+      }
+    }
   }
 }
